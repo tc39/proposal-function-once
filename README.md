@@ -100,3 +100,35 @@ this._hangup = (() => {
 [Meteor@2.6.1]: https://github.com/meteor/meteor/blob/release/METEOR%402.6.1/tools/fs/files.ts
 [cypress@9.5.2]: https://github.com/cypress-io/cypress/blob/v9.5.2/packages/driver/cypress/integration/commands/waiting_spec.js
 [jitsi-meet 1.0.5913]: https://github.com/jitsi/jitsi-meet/blob/stable/jitsi-meet_7001/react/features/toolbox/components/HangupButton.js
+
+## Precedents and web compatibility
+
+There is a [popular NPM library called once][NPM once] that allows monkey
+patching, which may raise concerns about Function.prototype.once’s web
+compatibility.
+
+However, since its first public version, the once library’s monkey patching has
+been opt-in only. The monkey patching is not conditional, and there is no actual web-compatibility risk from this library.
+
+```js
+// The default form exports a function.
+once = require('once');
+fOnce = once(f);
+
+// The opt-in form monkey patches Function.prototype.
+require('once').proto();
+fOnce = f.once();
+```
+
+Other popular once functions from libraries (e.g., [lodash.once][], [Underscore][] and [onetime][]) also do not use conditional monkey patching.
+
+A [code search for `!Function.prototype.once`][code search] (as in `if
+(!Function.prototype.once) { /* monkey patching */ }`) also gave no results in
+any indexed open-source code. It is unlikely that any production code on the
+web is conditionally monkey patching a once method into Function.prototype.
+
+[NPM once]: https://www.npmjs.com/package/once
+[lodash.once]: https://www.npmjs.com/package/lodash.once
+[Underscore]: https://www.npmjs.com/package/underscore
+[onetime]: https://www.npmjs.com/package/onetime
+[code search]: https://sourcegraph.com/search?q=context:global+%21Function.prototype.once&patternType=literal
