@@ -24,19 +24,6 @@ fOnce(3); // Does not print anything. Returns 6.
 fOnce(2); // Does not print anything. Returns 6.
 ```
 
-(If subsequent calls somehow occur before the first call finishes executing,
-then the subsequent calls are synchronously blocked until the first call
-finishes.)
-
-```js
-function g (x) { /* Stuff that takes a long time */ }
-const gOnce = g.once();
-const promise0 = (async () => gOnce())();
-const promise1 = (async () => gOnce())();
-// The gOnce call in promise1 will return
-// only after the gOnce call in promise0 returns.
-```
-
 ## Real-world examples
 The following code was adapted to use this proposal.
 
