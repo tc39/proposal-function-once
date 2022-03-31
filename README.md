@@ -1,5 +1,7 @@
 # Function.prototype.once for JavaScript
-ECMAScript Stage-1 Proposal. J. S. Choi, 2022.
+ECMAScript Stage-1 Proposal. 2022.
+
+Co-champions: Hemanth HM; J. S. Choi.
 
 ## Rationale
 It is often useful to ensure that callbacks execute only once, no matter how
