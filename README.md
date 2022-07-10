@@ -68,14 +68,6 @@ From [cypress@9.5.2][]:
 cy.on('command:retry', (() => { /* … */ }).once());
 ```
 
-```js
-From jitsi-meet 1.0.5913:
-this._hangup = (() => {
-  sendAnalytics(createToolbarEvent('hangup'));
-  /* … */
-}).once();
-```
-
 From [jitsi-meet 1.0.5913][]:
 ```js
 this._hangup = (() => {
